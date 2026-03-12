@@ -1,16 +1,6 @@
-import kagglehub
-import pandas as pd
-import os
+from src.train import run_training
+from src.evaluate import run_evaluation
 
-path = kagglehub.dataset_download("alextamboli/unsw-nb15")
-
-file_path = os.path.join(path, "UNSW_NB15_training-set.csv")
-
-data = pd.read_csv(file_path)
-
-# Load dataset
-data = pd.read_csv("data/UNSW_NB15_training-set.csv")
-
-print(data.head())
-print(data.shape)
-print(data.columns)
+if __name__ == "__main__":
+    model, X_train, y_train, X_test, y_test = run_training()
+    run_evaluation(model, X_train, y_train, X_test, y_test)

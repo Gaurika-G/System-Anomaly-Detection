@@ -4,11 +4,19 @@ data:
   processed_train: "outputs/processed_train.parquet"
   processed_test: "outputs/processed_test.parquet"
   encoder_path: "outputs/encoders.pkl"
+  model_path: "outputs/model.pkl"
+  results_path: "outputs/evaluation_results.csv"
 
 preprocessing:
   missing_value_strategy: "median"
   drop_columns: ["id", "attack_cat"]
   target_column: "label"
+
+model:
+  n_estimators: 200
+  max_samples: "auto"
+  random_state: 42
+  contamination_search: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30]
 
 features:
   categorical_columns:
@@ -59,3 +67,4 @@ features:
 logging:
   level: "INFO"
   log_file: "logs/pipeline.log"
+
